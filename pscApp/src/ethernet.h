@@ -5,10 +5,15 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <netdb.h>
 #include <time.h>
 #include <math.h>
 #include <unistd.h>
 #include <poll.h>
+
+#include <epicsExport.h>
+#include <drvSup.h>
+#include <iocsh.h>
 
 #pragma pack(2)
 
@@ -30,6 +35,9 @@
 #define ETHERNET_ENABLE		0x1000000
 #define POLL_TIMEOUT		1000
 #define PORT				9322
+#define NUMBER_OF_DEVICES	69
+#define NAME_LENGTH			20
+#define IP_LENGTH			20
 
 typedef uint64_t u64;
 typedef uint32_t u32;
@@ -48,7 +56,8 @@ typedef struct
 
 typedef struct 
 {
-	char ip[16];
+	char name[NAME_LENGTH];
+	char ip[IP_LENGTH];
 	int  port;
 	int  fd;
 
@@ -58,7 +67,7 @@ typedef struct
 	packet_t eth;
 } psc_t;
 
-psc_t* psc_init(char* ip, u16 port);
-int    psc_read(psc_t* device, float* value);
-int    psc_write(psc_t* device);
+int psc_init(psc_t* device, char* ip, u16 port);
+int psc_read(psc_t* device, float* value);
+int psc_write(psc_t* device);
 

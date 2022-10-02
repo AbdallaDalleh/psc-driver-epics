@@ -4,3 +4,8 @@
 #driver(myDriver)
 #registrar(myRegistrar)
 #variable(myVariable)
+
+device(ai , INST_IO, dev_ai, "psc")
+driver(drv_psc)
+registrar(pscRegister)
+
