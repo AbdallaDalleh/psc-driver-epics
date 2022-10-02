@@ -56,6 +56,17 @@ int psc_init(psc_t* device, char* ip, u16 port)
 	return PSC_OK;
 }
 
+psc_t* psc_get_device(char* name)
+{
+	int i = 0;
+	for(i = 0; i < deviceCount; i++) {
+		if(strncmp(devices[i].name, name, NAME_LENGTH) == 0)
+			return &devices[i];
+	}
+
+	return NULL;
+}
+
 int psc_read(psc_t* device, float* value)
 {
 	int status;

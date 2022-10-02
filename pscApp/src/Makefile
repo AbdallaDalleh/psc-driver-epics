@@ -17,6 +17,7 @@ DBD += psc.dbd
 
 # specify all source files to be compiled and added to the library
 psc_SRCS += ethernet.c
+psc_SRCS += ai.c
 
 psc_LIBS += $(EPICS_BASE_IOC_LIBS)
 

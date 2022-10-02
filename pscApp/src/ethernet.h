@@ -70,4 +70,5 @@ typedef struct
 int psc_init(psc_t* device, char* ip, u16 port);
 int psc_read(psc_t* device, float* value);
 int psc_write(psc_t* device);
+psc_t* psc_get_device(char* name);
 
